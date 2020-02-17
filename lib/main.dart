@@ -11,8 +11,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Personal Expenses',
       theme: ThemeData(
-        primarySwatch: Colors.purple,// primary è un solo colore, ma swatch consente diverse forme
+        primarySwatch: Colors.purple,
         accentColor: Colors.amber,
+        fontFamily: 'Quicksand',
+        textTheme: ThemeData.light().textTheme.copyWith(
+              title: TextStyle(
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.bold,
+                fontSize: 18,
+              ),
+            ),
+        appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                  title: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold),
+                )),
       ),
       home: MyHomePage(),
     );
@@ -53,7 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
   void _startAddNewTransaction(BuildContext ctx) {
     showModalBottomSheet(
       context: ctx,
-      builder: (_) { // GestureDetector avoid closing Modal Bottom even if we tap in blank area of Modal
+      builder: (_) {
+        // GestureDetector avoid closing Modal Bottom even if we tap in blank area of Modal
         return GestureDetector(
           onTap: () {},
           child: NewTransaction(_addNewTransaction),
